@@ -1,9 +1,10 @@
-import { cn } from '@/lib/utils'
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import { Navbar } from '@/components/Navbar'
 import { Providers } from '@/components/Providers'
+import { cn } from '@/lib/utils'
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import { Toaster } from 'sonner'
+import './globals.css'
 
 import "react-loading-skeleton/dist/skeleton.css"
 
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <Providers>
         <body className={cn('min-h-screen font-sans antialiased grainy', inter.className)}>
+          <Toaster richColors closeButton position='top-center' />
           <Navbar />
           {children}
         </body>
