@@ -7,6 +7,7 @@ import { Toaster } from 'sonner'
 import './globals.css'
 
 import "react-loading-skeleton/dist/skeleton.css"
+import "simplebar-react/dist/simplebar.min.css"
 
 const inter = Inter({ subsets: ['latin'] })
 
