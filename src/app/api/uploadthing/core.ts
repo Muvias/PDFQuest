@@ -40,21 +40,21 @@ export const ourFileRouter = {
 
                 const pinecone = await getPineconeClient()
                 const pineconeIndex = pinecone.Index("pdfquest")
+
                 const embeddings = new OpenAIEmbeddings({
                     openAIApiKey: process.env.OPENAI_API_KEY,
                 })
 
                 await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
                     pineconeIndex,
-                    namespace: createdFile.id,
                 })
 
                 await db.file.update({
-                    where: {
-                        id: createdFile.id,
-                    },
                     data: {
                         uploadStatus: "SUCCESS",
+                    },
+                    where: {
+                        id: createdFile.id,
                     },
                 })
             } catch (error) {
