@@ -1,10 +1,11 @@
 import { trpc } from "@/app/_trpc/client"
 import { INFINITE_QUERY_LIMIT } from "@/config/infinit-query"
+import { useIntersection } from "@mantine/hooks"
 import { Loader2, MessageSquare } from "lucide-react"
+import { useContext, useEffect, useRef } from "react"
 import Skeleton from "react-loading-skeleton"
-import { Message } from "./Message"
-import { useContext } from "react"
 import { ChatContext } from "./ChatContext"
+import Message from "./Message"
 
 interface MessagesProps {
     fileId: string
@@ -34,6 +35,18 @@ export function Messages({ fileId }: MessagesProps) {
         )
     }
 
+    const lastMessageRef = useRef<HTMLDivElement>(null)
+    const { ref, entry } = useIntersection({
+        root: lastMessageRef.current,
+        threshold: 1
+    })
+
+    useEffect(() => {
+        if (entry?.isIntersecting) {
+            fetchNextPage()
+        }
+    }, [entry, fetchNextPage])
+
     const combinedMessages = [
         ...(isAiThinking ? [loadingMessage] : []),
         ...(messages ?? [])
@@ -47,6 +60,7 @@ export function Messages({ fileId }: MessagesProps) {
 
                     if (index === combinedMessages.length - 1) {
                         return <Message
+                            ref={ref}
                             key={message.id}
                             message={message}
                             isNextMessageSamePerson={isNextMessageSamePerson}
