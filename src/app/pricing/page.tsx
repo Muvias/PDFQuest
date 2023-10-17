@@ -77,7 +77,7 @@ export default function page({ }: pageProps) {
 
     return (
         <>
-            <MaxWidthWrapper className="max-w-5xl mb-8 mt-24 text-center">
+            <MaxWidthWrapper className="max-w-5xl mb-8 mt-8 text-center">
                 <div className="mx-auto mb-10 sm:max-w-lg">
                     <h1 className="text-6xl sm:text-7xl font-bold">
                         Preços
@@ -143,7 +143,7 @@ export default function page({ }: pageProps) {
                                                     {negative ? (
                                                         <Minus className="h-6 w-6 text-gray-300" />
                                                     ) : (
-                                                        <Check className="h-6 w-6 text-gray-300" />
+                                                        <Check className="h-6 w-6 text-blue-500" />
                                                     )}
                                                 </div>
                                                 {footnote ? (

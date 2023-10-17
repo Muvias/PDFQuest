@@ -1,11 +1,19 @@
+"use client"
+
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
+import { trpc } from "@/app/_trpc/client";
 
-interface UpgradeButtonProps { }
+export function UpgradeButton() {
+    const { mutate: createStripeSession } = trpc.createStripeSession.useMutation({
+        onSuccess: ({ url }) => {
+            window.location.href = url ?? "/dashboard/billing"
+        }
+    })
 
-export function UpgradeButton({ }: UpgradeButtonProps) {
     return (
         <Button
+            onClick={() => createStripeSession()}
             className="w-full"
         >
             Atualizar agora <ArrowRight className="w-5 h-5 ml-1.5" />
