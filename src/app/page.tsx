@@ -40,7 +40,7 @@ export default function Home() {
       <div>
         <div className="relative isolate">
           <div
-            aria-label="true"
+            aria-hidden="true"
             className="absolute -top-40 sm:-top-80 -z-10 inset-x-0 pointer-events-none transform-gpu overflow-hidden blur-3xl"
           >
             <div
@@ -68,7 +68,7 @@ export default function Home() {
           </div>
 
           <div
-            aria-label="true"
+            aria-hidden="true"
             className="absolute -top-40 sm:-top-80 -z-10 inset-x-0 pointer-events-none transform-gpu overflow-hidden blur-3xl"
           >
             <div

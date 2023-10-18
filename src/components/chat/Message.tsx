@@ -67,4 +67,6 @@ function Message({ message, isNextMessageSamePerson }: MessageProps, ref: Ref<HT
     )
 }
 
+Message.displayName = 'Message'
+
 export default forwardRef(Message);
