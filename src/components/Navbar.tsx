@@ -4,6 +4,7 @@ import { buttonVariants } from "./ui/button";
 import { LoginLink, RegisterLink, getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { ArrowRight } from "lucide-react";
 import { UserAccountNav } from "./UserAccountNav";
+import { MobileNav } from "./MobileNav";
 
 export function Navbar() {
     const { getUser } = getKindeServerSession()
@@ -20,7 +21,7 @@ export function Navbar() {
                         <span className="text-primary">PDFQuest.</span>
                     </Link>
 
-                    {/* TODO: ADD mobile menu */}
+                    <MobileNav isAuth={!!user} />
 
                     <div className="hidden sm:flex items-center space-x-4">
                         {!user ? (

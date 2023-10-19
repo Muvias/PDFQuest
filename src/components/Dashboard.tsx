@@ -9,10 +9,13 @@ import Skeleton from "react-loading-skeleton";
 import { UploadButton } from "./UploadButton";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import { getUserSubscriptionPlan } from "@/lib/stripe";
 
-interface DashboardProps { }
+interface DashboardProps {
+    subscriptionPlan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>
+}
 
-export function Dashboard({ }: DashboardProps) {
+export function Dashboard({ subscriptionPlan }: DashboardProps) {
     const [currentlyDeletingFile, setCurrentlyDeletingFile] = useState<string | null>(null)
 
     const utils = trpc.useContext();
@@ -38,7 +41,7 @@ export function Dashboard({ }: DashboardProps) {
                     Meus Arquivos
                 </h1>
 
-                <UploadButton />
+                <UploadButton isSubscribed={subscriptionPlan.isSubscribed} />
             </div>
 
             {files && files?.length !== 0 ? (

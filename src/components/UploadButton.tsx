@@ -12,13 +12,15 @@ import { toast } from 'sonner'
 import { trpc } from "@/app/_trpc/client"
 import { useRouter } from "next/navigation"
 
-function UploadDropzone() {
+function UploadDropzone({ isSubscribed }: { isSubscribed: boolean }) {
     const router = useRouter()
 
     const [isUploading, setIsUploading] = useState<boolean>(false)
     const [uploadProgress, setUploadProgress] = useState<number>(0)
 
-    const { startUpload } = useUploadThing("pdfUploader")
+    const { startUpload } = useUploadThing(
+        isSubscribed ? "proPlanUploader" : "freePlanUploader"
+    )
 
     const { mutate: startPolling } = trpc.getFile.useMutation({
         onSuccess: (file) => {
@@ -93,7 +95,7 @@ function UploadDropzone() {
                                     <span className="font-semibold">Clique para carregar</span>{' '} ou arraste e solte aqui
                                 </p>
                                 <p className="text-xs text-zinc-500">
-                                    PDF (até 4MB)
+                                    PDF (até {isSubscribed ? "16" : "4"}MB)
                                 </p>
                             </div>
 
@@ -140,7 +142,7 @@ function UploadDropzone() {
     )
 }
 
-export function UploadButton() {
+export function UploadButton({ isSubscribed }: { isSubscribed: boolean }) {
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
     return (
@@ -160,7 +162,9 @@ export function UploadButton() {
             </DialogTrigger>
 
             <DialogContent>
-                <UploadDropzone />
+                <UploadDropzone
+                    isSubscribed={isSubscribed}
+                />
             </DialogContent>
         </Dialog>
     )

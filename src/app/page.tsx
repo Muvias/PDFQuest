@@ -12,7 +12,7 @@ export default function Home() {
       >
         <div className="flex items-center justify-center max-w-fit px-7 py-2 mx-auto mb-4 space-x-2 rounded-full overflow-hidden shadow-md border backdrop-blur border-gray-200 bg-white hover:border-gray-300 hover:bg-zinc-100 transition-all">
           <p className="text-sm font-semibold text-gray-700">
-            PDFQuest is now public!
+            PDFQuest agora é público!
           </p>
         </div>
 

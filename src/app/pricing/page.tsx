@@ -78,7 +78,7 @@ export default function page({ }: pageProps) {
     return (
         <>
             <MaxWidthWrapper className="max-w-5xl mb-8 mt-8 text-center">
-                <div className="mx-auto mb-10 sm:max-w-lg">
+                <div className="mx-auto mb-4 sm:max-w-lg">
                     <h1 className="text-6xl sm:text-7xl font-bold">
                         Preços
                     </h1>
